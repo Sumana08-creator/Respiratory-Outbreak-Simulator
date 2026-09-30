@@ -1,0 +1,5 @@
+model,scenario,peak_infectious,peak_day,peak_reduction_vs_model_baseline
+SIR,Baseline,330.729,52,
+SIR,Transmission Reduction,129.822,29,60.75
+SEIR,Baseline,279.054,64,
+SEIR,Transmission Reduction,72.841,30,73.9

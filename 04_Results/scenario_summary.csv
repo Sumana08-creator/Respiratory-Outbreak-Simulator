@@ -1,0 +1,5 @@
+scenario,peak_infectious,peak_day,final_susceptible,final_infectious,cumulative_simulated_infections
+Baseline,330.729,52,2042.84,0.036,2957.124
+Vaccination,10.494,28,3116.981,3.207,279.811
+Transmission Reduction,129.822,29,4334.058,0.003,665.939
+Combined Intervention,10.494,28,3319.178,0.0,80.822
