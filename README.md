@@ -1,46 +1,36 @@
 # Respiratory Outbreak Simulator
 
-## Python-Based SIR and SEIR Computational Epidemiology Project
+## Python-Based Computational Epidemiology and Population-Immunity Modelling Project
 
-An independent computational public-health modelling project developed to explore respiratory disease transmission, intervention scenarios, parameter sensitivity and model uncertainty using Python.
-
----
-
-## Project Overview
-
-This project implements deterministic compartmental epidemic models to simulate disease transmission over a 180-day period.
-
-The project began with a basic:
-
-SIR model
-
-and was subsequently extended to:
-
-SEIR
-
-to examine how introducing an exposed/latent compartment changes the simulated epidemic trajectory.
-
-The project also evaluates illustrative public-health intervention scenarios and explores uncertainty in model parameters using sensitivity analysis and Monte Carlo simulation.
+An independent computational public-health modelling project developed to investigate infectious disease transmission, intervention scenarios, parameter uncertainty, population immunity and epidemic-emergence thresholds using Python.
 
 ---
 
 ## Research Question
 
-How do model structure, intervention assumptions and uncertainty in epidemiological parameters influence simulated respiratory disease transmission and epidemic peak dynamics?
+How do model structure, intervention assumptions, population immunity patterns and uncertainty in epidemiological parameters influence simulated disease transmission and epidemic-emergence dynamics?
 
 ---
 
-## Objectives
+## Project Overview
 
-- Implement a deterministic SIR model in Python.
-- Extend the model to an SEIR structure.
-- Simulate epidemic trajectories over 180 days.
-- Compare illustrative intervention scenarios.
-- Conduct sensitivity analysis of β and γ.
-- Conduct a 1,000-run Monte Carlo uncertainty analysis.
-- Validate the computational implementation.
-- Compare SIR and SEIR model structures.
-- Develop reproducible research outputs for GitHub.
+The project began with deterministic SIR and SEIR compartmental epidemic models and was progressively extended to include:
+
+- Public-health intervention scenarios
+- Parameter sensitivity analysis
+- Monte Carlo uncertainty analysis
+- Computational validation
+- Synthetic longitudinal population-immunity data
+- Age-group analysis
+- Birth-cohort analysis
+- Calendar-time analysis
+- Enterovirus-type analysis
+- Population susceptibility estimation
+- Immunity-adjusted SEIR modelling
+- Effective reproduction number analysis
+- Epidemic-emergence threshold analysis
+
+The project is designed as a reproducible computational research portfolio rather than a real-world forecasting system.
 
 ---
 
@@ -48,222 +38,150 @@ How do model structure, intervention assumptions and uncertainty in epidemiologi
 
 ### SIR
 
-The SIR model contains:
-
-- Susceptible (S)
-- Infectious (I)
-- Recovered/Removed (R)
-
-Structure:
-
-S → I → R
+Susceptible → Infectious → Recovered/Removed
 
 ### SEIR
 
-The SEIR model adds an exposed/latent compartment:
+Susceptible → Exposed → Infectious → Recovered/Removed
 
-S → E → I → R
-
-The additional parameter σ controls the transition from exposed to infectious.
+The SEIR model introduces an exposed compartment controlled by the parameter σ.
 
 ---
 
-## Model Parameters
+## Baseline Parameters
 
-### Baseline SIR
-
-- β = 0.30
-- γ = 0.20
 - Population = 5,000
 - Initial infectious population = 10
-- Simulation period = 180 days
-
-### SEIR
-
 - β = 0.30
 - γ = 0.20
 - σ = 1.11
-- Population = 5,000
-- Initial infectious population = 10
 - Simulation period = 180 days
 
-The SEIR σ value was treated as an evidence-informed initial modelling parameter and as an uncertain quantity rather than a biological constant.
+The baseline R₀ under the simplified SIR formulation is:
+
+R₀ = β / γ = 1.5
+
+The β and γ values are illustrative modelling assumptions. The σ value is treated as an evidence-informed modelling input rather than a universal biological constant.
 
 ---
 
-## Intervention Scenarios
+## Intervention Modelling
 
-The project explored illustrative scenarios including:
+The project includes:
 
 1. Baseline
 2. Vaccination
 3. Transmission reduction
 4. Combined intervention
 
-The transmission-reduction scenario introduced a 50% reduction in the effective transmission parameter from Day 30.
-
-The vaccination scenario used an illustrative 40% coverage assumption with 80% effectiveness.
-
-These intervention assumptions are methodological demonstrations and should not be interpreted as empirical estimates of real-world intervention effectiveness.
+The intervention assumptions are methodological demonstrations and should not be interpreted as empirical estimates of real-world intervention effectiveness.
 
 ---
 
-## Sensitivity Analysis
+## Sensitivity and Uncertainty
 
-One-way sensitivity analysis examined the effect of varying:
+The project includes:
 
-### β
+- One-way β sensitivity analysis
+- One-way γ sensitivity analysis
+- 1,000-run Monte Carlo uncertainty analysis
+- Reproducible random seed
 
-- 0.25
-- 0.30
-- 0.35
+Monte Carlo results are reported as model-based percentile ranges rather than statistical confidence intervals.
 
-### γ
+---
 
-- 0.15
-- 0.20
-- 0.25
+## Population-Immunity Extension
 
-The analysis examined changes in:
+A synthetic longitudinal-style dataset was generated to investigate how population immunity could be represented computationally.
 
+The dataset includes:
+
+- Synthetic participant identifiers
+- Birth year
+- Sampling year
+- Age and age group
+- Birth cohort
+- Synthetic enterovirus-type labels
+- Synthetic neutralizing antibody titres
+- Synthetic immunity classification
+- Susceptibility fraction
+
+The synthetic data are **not real patient data**, not Finnish DIPP data and not clinical serological measurements.
+
+---
+
+## Immunity Analysis
+
+Synthetic immunity was analysed by:
+
+- Age group
+- Birth cohort
+- Calendar year
+- Enterovirus type
+
+The analysis then derived mean population susceptibility by calendar year and enterovirus type.
+
+This creates the computational link:
+
+Synthetic immunity → susceptibility → epidemic modelling
+
+---
+
+## Immunity-Adjusted SEIR
+
+Synthetic population susceptibility was incorporated into an additional SEIR framework.
+
+The analysis investigates how different susceptibility levels influence:
+
+- Effective reproduction number
+- Initial epidemic growth
 - Peak infectious population
-- Timing of epidemic peak
+- Timing of the epidemic peak
 - Cumulative simulated infections
 
 ---
 
-## Monte Carlo Uncertainty Analysis
+## Epidemic-Emergence Threshold
 
-A 1,000-run Monte Carlo simulation randomly sampled:
+Under the illustrative model parameters:
 
-- β between 0.25 and 0.35
-- γ between 0.15 and 0.25
+R₀ = 1.5
 
-The resulting simulated peak infectious populations were summarised using:
+The critical susceptible fraction is approximately:
 
-- Minimum
-- 5th percentile
-- Median
-- 95th percentile
-- Maximum
+1 / R₀ = 66.7%
 
-The resulting uncertainty distribution demonstrated substantial variation in epidemic peak size under parameter uncertainty.
+The project therefore evaluates the transition between:
+
+- R_eff < 1 — no initial epidemic growth
+- R_eff = 1 — threshold condition
+- R_eff > 1 — potential initial epidemic growth
+
+This is a model-derived threshold and has not been empirically validated against real epidemic data.
 
 ---
 
 ## Model Validation
 
-Computational validation checks included:
+Computational checks include:
 
 - Initial condition verification
 - Population conservation
-- Non-negative compartment values
-- Expected susceptible decline
-- Expected recovered/removed increase
+- Non-negative compartments
+- Expected compartment trajectories
+- Reproducibility checks
 
-The baseline implementation passed all programmed validation checks.
-
-This represents computational consistency checking rather than empirical validation against real-world surveillance data.
+These checks represent computational consistency rather than empirical validation.
 
 ---
 
-## Key Results
+## Repository Structure
 
-### Baseline SIR
-
-- Peak infectious population: 330.729
-- Peak day: 52
-
-### Baseline SEIR
-
-- Peak infectious population: 279.054
-- Peak day: 64
-
-### SIR vs SEIR
-
-The SEIR model produced a lower and later simulated infectious peak under the same β and γ assumptions.
-
-### Monte Carlo analysis
-
-Across 1,000 simulations:
-
-- 5th percentile: 46.476
-- Median: 328.374
-- 95th percentile: 838.264
-
----
-
-## Limitations
-
-This project is a methodological computational modelling exercise.
-
-Important limitations include:
-
-- Homogeneous mixing assumption
-- Simplified compartment structure
-- No age or demographic structure
-- No explicit healthcare-capacity modelling
-- No empirical calibration to surveillance data
-- Simplified intervention representations
-- Deterministic baseline model
-- Illustrative parameter assumptions
-
-The simulated outputs should therefore not be interpreted as forecasts of a real-world outbreak.
-
----
-
-## Future Development
-
-Potential extensions include:
-
-- Age-stratified SEIR modelling
-- Stochastic transmission
-- Separate vaccination compartments
-- Contact-network modelling
-- Agent-based modelling
-- Evidence-based parameter calibration
-- Real-world epidemiological dataset integration
-- Healthcare-capacity modelling
-- Bayesian uncertainty analysis
-
----
-
-## Tools
-
-- Python
-- NumPy
-- Matplotlib
-- CSV data processing
-- Excel for dataset inspection
-
----
-
-## Reproducibility
-
-The project stores:
-
-- Model code
-- Simulation outputs
-- CSV datasets
-- Visualisations
-- Documentation
-- Validation scripts
-
-The repository is structured so that the computational workflow can be followed from model assumptions through simulation and analysis.
-
----
-
-## Academic Purpose
-
-This project was developed independently to build practical understanding of:
-
-- Computational epidemiology
-- Mathematical modelling
-- Python-based simulation
-- Sensitivity analysis
-- Monte Carlo uncertainty
-- Model validation
-- Public-health intervention modelling
-- Reproducible computational research
-
-It is intended as a learning and research-methodology portfolio project rather than a validated epidemiological forecasting system.
+```text
+01_Project_Documentation/
+02_Code/
+03_Data/
+04_Results/
+05_Report/
+README.md
