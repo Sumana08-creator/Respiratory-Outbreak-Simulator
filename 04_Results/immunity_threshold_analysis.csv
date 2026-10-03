@@ -1,0 +1,10 @@
+susceptible_fraction,susceptible_percentage,effective_reproduction_number,critical_susceptibility,emergence_indicator,initial_susceptible,initial_protected,peak_infectious,peak_day,cumulative_simulated_infections
+0.1,10.0,0.15,0.6667,No initial epidemic growth,500.0,4490.0,10,0,1.761
+0.2,20.0,0.3,0.6667,No initial epidemic growth,1000.0,3990.0,10,0,4.274
+0.3,30.0,0.45,0.6667,No initial epidemic growth,1500.0,3490.0,10,0,8.144
+0.4,40.0,0.6,0.6667,No initial epidemic growth,2000.0,2990.0,10,0,14.866
+0.5,50.0,0.75,0.6667,No initial epidemic growth,2500.0,2490.0,10,0,29.316
+0.6,60.0,0.9,0.6667,No initial epidemic growth,3000.0,1990.0,10,0,77.62
+0.7,70.0,1.05,0.6667,Potential initial epidemic growth,3500.0,1490.0,11.935,78,367.037
+0.8,80.0,1.2,0.6667,Potential initial epidemic growth,4000.0,990.0,59.051,93,1249.593
+0.9,90.0,1.35,0.6667,Potential initial epidemic growth,4500.0,490.0,152.023,76,2146.992
