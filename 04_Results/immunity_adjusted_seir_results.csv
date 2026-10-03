@@ -1,0 +1,5 @@
+sample_year,enterovirus_type,mean_susceptibility,initial_susceptible,initial_protected,peak_infectious,peak_day,cumulative_simulated_infections
+2025,CVA16,0.4839,2419.5,2570.5,10,0,25.974
+2025,CVA6,0.4036,2018.0,2972.0,10,0,15.202
+2025,EV-A71,0.4083,2041.5,2948.5,10,0,15.653
+2025,EV-D68,0.4882,2441.0,2549.0,10,0,26.811
